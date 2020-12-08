@@ -9,8 +9,16 @@ import "./App.css";
 
 class App extends React.Component {
   state = {
-    video: [],
+    videos: [],
     selectedVideo: null,
+  };
+
+  componentDidMount() {
+    this.handleSubmit("bees");
+  }
+
+  onVideoSelect = (video) => {
+    this.setState({ selectedVideo: video });
   };
 
   handleSubmit = async (searchTerm) => {
@@ -23,16 +31,16 @@ class App extends React.Component {
       },
     });
     this.setState({
-      video: response.data.items,
+      videos: response.data.items,
       selectedVideo: response.data.items[0],
     });
   };
 
   render() {
-    const { selectedVideo } = this.state;
+    const { selectedVideo, videos } = this.state;
     return (
-      <Grid justify="center" container spacing={15}>
-        <Grid item xs={12}>
+      <Grid justify="center" container spacing={10}>
+        <Grid item xs={11}>
           <Grid constainer spacing={10}>
             <Grid item xs={12}>
               <SearchBar onFormSubmit={this.handleSubmit} />
@@ -41,7 +49,7 @@ class App extends React.Component {
               <VideoDetails video={selectedVideo} />
             </Grid>
             <Grid item xs={4}>
-              <VideoList />
+              <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
             </Grid>
           </Grid>
         </Grid>
