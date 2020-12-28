@@ -26,7 +26,7 @@ class App extends React.Component {
       params: {
         part: "snippet",
         maxResults: 5,
-        key: ["API_KEY"],
+        key: "AIzaSyBb3BPoWqDM6tLnGmnL6hJVI8DyWpcL6B8",
         q: searchTerm,
       },
     });
@@ -39,13 +39,13 @@ class App extends React.Component {
   render() {
     const { selectedVideo, videos } = this.state;
     return (
-      <Grid justify="center" container spacing={10}>
+      <Grid style={{ justifyContent: "center" }} container spacing={10}>
         <Grid item xs={11}>
-          <Grid constainer spacing={10}>
+          <Grid container spacing={10}>
             <Grid item xs={12}>
               <SearchBar onFormSubmit={this.handleSubmit} />
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={8} x>
               <VideoDetails video={selectedVideo} />
             </Grid>
             <Grid item xs={4}>
